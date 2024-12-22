@@ -88,8 +88,9 @@ jobs:
         IMAGE_TAG: latest
         REPO_NAME: frontend
       run: |
-        docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 --tag 669172573612.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG .
-        docker push 669172573612.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 619071333688.dkr.ecr.us-east-1.amazonaws.com
+        docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 --tag 619071333688.dkr.ecr.us-east-1.amazonaws.com/frontend:latest .
+        docker push 619071333688.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
     
 
     - name: Configure Kubeconfig
@@ -103,5 +104,5 @@ jobs:
         IMAGE_TAG: latest
         REPO_NAME: frontend
       run: |
-          kustomize edit set image frontend=669172573612.dkr.ecr.us-east-1.amazonaws.com/$REPO_NAME:$IMAGE_TAG
+          kustomize edit set image frontend=619071333688.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
           kustomize build | kubectl apply -f -
