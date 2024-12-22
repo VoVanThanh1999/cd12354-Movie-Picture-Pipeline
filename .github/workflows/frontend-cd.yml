@@ -1,4 +1,4 @@
-ame: Frontend Continuous Deployment
+name: Frontend Continuous Deployment
 
 on:
   workflow_dispatch:
