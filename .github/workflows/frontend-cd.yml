@@ -102,5 +102,6 @@ jobs:
         IMAGE_TAG: latest
         REPO_NAME: frontend
       run: |
+          aws eks update-kubeconfig --name cluster --region us-east-1
           kustomize edit set image frontend=619071333688.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
           kustomize build | kubectl apply -f -
