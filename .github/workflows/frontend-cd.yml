@@ -66,11 +66,7 @@ jobs:
         node-version: 18
         cache: 'npm'
         cache-dependency-path: starter/frontend/package-lock.json
-
-    - name: Set up Kubernetes CLI
-      uses: actions/setup-kubectl@v3
-      with:
-        version: '1.25.0'
+        
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
@@ -109,4 +105,4 @@ jobs:
       run: |
           aws eks update-kubeconfig --name cluster --region us-east-1
           kustomize edit set image frontend=619071333688.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
-          kustomize build | kubectl apply -f -
+          kustomize build | kubectl apply -f --validate=false
