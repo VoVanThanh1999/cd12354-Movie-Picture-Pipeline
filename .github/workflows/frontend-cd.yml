@@ -68,7 +68,7 @@ jobs:
         cache-dependency-path: starter/frontend/package-lock.json
 
     - name: Set up Kubernetes CLI
-      uses: azure/setup-kubectl@v3
+      uses: actions/setup-kubectl@v3
       with:
         version: '1.25.0'
 
