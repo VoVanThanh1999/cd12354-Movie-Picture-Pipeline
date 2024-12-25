@@ -66,8 +66,8 @@ jobs:
         node-version: 18
         cache: 'npm'
         cache-dependency-path: starter/frontend/package-lock.json
-       
-        
+
+
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
@@ -89,7 +89,7 @@ jobs:
         IMAGE_TAG: latest
         REPO_NAME: frontend
       run: |
-        docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 --tag 619071333688.dkr.ecr.us-east-1.amazonaws.com/frontend:latest .
+        docker build --build-arg=REACT_APP_MOVIE_API_URL=http://a584649bb02c44ed19133d905061adc9-425689075.us-east-1.elb.amazonaws.com/ --tag 619071333688.dkr.ecr.us-east-1.amazonaws.com/frontend:latest .
         docker push 619071333688.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
     
 
